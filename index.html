@@ -60,7 +60,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 .fx{position:absolute;inset:0;pointer-events:none}
 .fx-back{z-index:0}
 .fx-front{z-index:2}
-.twk{position:absolute;width:var(--s);height:var(--s);margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2);opacity:0;animation:twinkle var(--d,3s) ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(255,210,90,.9))}
+.twk{position:absolute;width:var(--s);height:var(--s);margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2);opacity:0;animation:twinkle var(--d,3s) ease-in-out infinite;background:radial-gradient(circle,rgba(255,210,90,.55),transparent 62%)}
 .twk svg{display:block;width:100%;height:100%;fill:#ffe9a8}
 @keyframes twinkle{0%,100%{opacity:0;transform:scale(.2) rotate(0deg)}45%,55%{opacity:1;transform:scale(1) rotate(40deg)}}
 .meteor{position:absolute;width:clamp(90px,26vw,170px);height:2px;border-radius:2px;background:linear-gradient(90deg,#fff8de,#ffd56a 18%,rgba(232,178,46,.35) 55%,transparent);opacity:0;transform-origin:left center;animation:meteor var(--d,7s) linear infinite}
@@ -80,6 +80,12 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 @keyframes bokeh{from{opacity:.3;transform:translateY(0)}to{opacity:.85;transform:translateY(-14px)}}
 .dust{position:absolute;width:var(--s);height:var(--s);border-radius:50%;background:#fff3c8;box-shadow:0 0 6px 1px rgba(255,200,80,.85);opacity:.2;animation:dust var(--d) ease-in-out infinite}
 @keyframes dust{0%,100%{opacity:.15}50%{opacity:1}}
+/* まとめてまたたくグループ(粒そのものは動かさない) */
+.grp{position:absolute;inset:0;pointer-events:none;will-change:opacity}
+.grp i{animation:none!important;opacity:.9}
+.grp-a{animation:grpTw 3.2s ease-in-out infinite alternate}
+.grp-b{animation:grpTw 2.6s ease-in-out -1.3s infinite alternate}
+@keyframes grpTw{from{opacity:.25}to{opacity:1}}
 /* 写真の下の金の光を次のブロックへなめらかにつなぐ */
 .hero+.fv,.hero+.fv.is-short{background:linear-gradient(rgba(150,96,12,.42),rgba(150,96,12,.1) 45%,transparent 80%),var(--void)}
 
@@ -205,7 +211,7 @@ footer .law{font-size:13px;color:var(--mute)}
 .hero+.fv{background:linear-gradient(rgba(126,10,27,.62),rgba(126,10,27,.18) 45%,transparent 85%),var(--void)}
 /* 赤いリボン(写真の後ろを横切る) */
 .ribbon{position:absolute;left:-16%;top:16%;width:132%;height:auto;overflow:visible;pointer-events:none}
-.ribbon g{animation:wave 7s ease-in-out infinite alternate}
+.ribbon{animation:wave 7s ease-in-out infinite alternate;will-change:transform}
 .ribbon .rb-sh{filter:blur(10px);opacity:.55}
 /* 看板の中の星(稲妻のかわり) */
 .neon-sign .star-mid{transform-box:fill-box;transform-origin:center}
@@ -272,7 +278,8 @@ footer .law{font-size:14px}
 /* 夜空の小さな金の星(看板・写真・日付の後ろ) */
 .stars{position:absolute;inset:0;z-index:0;pointer-events:none}
 .stars i{position:absolute;width:var(--s);height:var(--s);margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2);animation:twinkle var(--d) ease-in-out infinite}
-.stars .gs svg{display:block;width:100%;height:100%;fill:#ffe39a;filter:drop-shadow(0 0 3px rgba(255,205,90,.9))}
+.stars .gs{background:radial-gradient(circle,rgba(255,205,90,.5),transparent 62%)}
+.stars .gs svg{display:block;width:100%;height:100%;fill:#ffe39a}
 .stars .gd{border-radius:50%;background:#ffe7a6;box-shadow:0 0 5px 1px rgba(255,200,80,.8)}
 .sky .neon-top,.sky .hero,.sky .fv.is-short{position:relative;z-index:1}
 
@@ -333,13 +340,13 @@ footer .law{font-size:14px}
 /* ═════ v8: 高級感のあるホリデーのきらめき ═════ */
 /* 吊るしオーナメント(金と深紅の玉・金のひも、ゆっくり揺れる) */
 .orn{position:absolute;left:0;right:0;top:0;height:0;z-index:2;pointer-events:none}
-.ob{position:absolute;top:0;width:var(--d);margin-left:calc(var(--d) / -2);padding-top:var(--len);transform-origin:50% 0;animation:swing 5s ease-in-out infinite alternate}
+.ob{position:absolute;top:0;width:var(--d);margin-left:calc(var(--d) / -2);padding-top:var(--len);transform-origin:50% 0;animation:swing 5s ease-in-out infinite alternate;will-change:transform}
 .ob::before{content:"";position:absolute;left:50%;top:0;width:1.5px;height:calc(var(--len) + 2px);margin-left:-.75px;background:linear-gradient(#fff3c4,#c9a24a)}
 .ob svg{display:block;width:100%;height:auto;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45)) drop-shadow(0 0 12px rgba(255,240,200,.45))}
 @keyframes swing{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
-.ob .glint{transform-box:fill-box;transform-origin:center;animation:glintStar 2.6s ease-in-out infinite;animation-delay:inherit}
+.ob::after{content:"";position:absolute;left:12%;top:calc(var(--len) + var(--d) * .1);width:calc(var(--d) * .38);height:calc(var(--d) * .38);background:#fff;clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%);animation:glintStar 2.6s ease-in-out infinite;will-change:transform,opacity}
 @keyframes glintStar{0%,100%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1)}}
-.ob:nth-child(even) .glint{animation-duration:3.3s}
+.ob:nth-child(even)::after{animation-duration:3.3s;animation-delay:1.2s}
 @media (max-width:420px){.orn-fv .ob{--d:24px!important}.orn-fv .ob:nth-child(2),.orn-fv .ob:nth-child(3){display:none}}
 
 /* FV: 金の大きなボケを足して、上の縁を金の細線で締める */
@@ -354,7 +361,8 @@ footer .law{font-size:14px}
 
 @media (min-width:1240px){
   /* 両脇: 深いベルベットの赤＋金の粒がまたたく */
-  body{background:
+  body{background:#7e0a1b}
+  body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
     radial-gradient(1.6px 1.6px at 18px 26px,rgba(255,226,150,.95),transparent),
     radial-gradient(1.2px 1.2px at 92px 74px,rgba(255,226,150,.8),transparent),
     radial-gradient(2px 2px at 140px 18px,rgba(255,236,180,.9),transparent),
@@ -363,8 +371,8 @@ footer .law{font-size:14px}
     radial-gradient(120% 70% at 50% 0,#c8142f,transparent 70%),
     radial-gradient(90% 60% at 50% 110%,#5a0612,transparent 70%),
     linear-gradient(#a10d24,#6b0716);
-    background-size:170px 170px,170px 170px,170px 170px,170px 170px,170px 170px,auto,auto,auto;background-attachment:fixed}
-  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:
+    background-size:170px 170px,170px 170px,170px 170px,170px 170px,170px 170px,auto,auto,auto}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;will-change:opacity;background:
     radial-gradient(2.4px 2.4px at 40px 60px,#fff3c4,transparent),
     radial-gradient(1.8px 1.8px at 120px 110px,#ffe39a,transparent),
     radial-gradient(2.2px 2.2px at 200px 30px,#fff3c4,transparent),
@@ -380,6 +388,8 @@ footer .law{font-size:14px}
   .rail-nav a{background:rgba(7,13,44,.9);border-color:rgba(255,215,120,.7)}
   .countdown{background:rgba(7,13,44,.7);border-color:#e8b22e}
 }
+/* FVが画面外のときは演出を止める(スクロールを軽く) */
+.sky.is-off *,.sky.is-off *::before,.sky.is-off *::after{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -635,8 +645,8 @@ function setupHeroGold() {
     const s = (1.5 + rand() * 2.5).toFixed(1), d = (1.6 + rand() * 2.4).toFixed(1), dl = (rand() * -4).toFixed(1);
     return `<i class="dust" style="left:${x}%;top:${y}%;--s:${s}px;--d:${d}s;animation-delay:${dl}s"></i>`;
   }).join("");
-  back.insertAdjacentHTML("afterbegin", bokeh + wave + dust(40));
-  front.insertAdjacentHTML("beforeend", dust(18));
+  back.insertAdjacentHTML("afterbegin", bokeh + wave + `<div class="grp grp-a">${dust(13)}</div><div class="grp grp-b">${dust(13)}</div>`);
+  front.insertAdjacentHTML("beforeend", `<div class="grp grp-b">${dust(10)}</div>`);
 }
 
 /* 雪の結晶(六角の枝つき)を data-snow の数だけ降らせる。位置は固定の乱数 */
@@ -659,7 +669,7 @@ function setupSnow() {
 function setupStars() {
   const rand = seeded(20261212);
   const star = '<svg viewBox="-10 -10 20 20"><path d="M0-10C1-3 3-1 10 0 3 1 1 3 0 10-1 3-3 1-10 0-3-1-1-3 0-10z"/></svg>';
-  const html = Array.from({length: 90}, (_, i) => {
+  const html = Array.from({length: 64}, (_, i) => {
     const x = (rand() * 100).toFixed(1), y = (rand() * 100).toFixed(1);
     const d = (2 + rand() * 3).toFixed(1), dl = (-rand() * 5).toFixed(1);
     if (i % 3 === 0) {
@@ -669,7 +679,14 @@ function setupStars() {
     const sz = (1.4 + rand() * 1.8).toFixed(1);
     return `<i class="gd" style="left:${x}%;top:${y}%;--s:${sz}px;--d:${d}s;animation-delay:${dl}s"></i>`;
   }).join("");
-  document.getElementById("stars").innerHTML = html;
+  /* 4本光の星(gs)は1つずつ、光の粒(gd)は2グループで交互にまたたく */
+  const tmp = document.createElement("div");
+  tmp.innerHTML = html;
+  const gs = [...tmp.querySelectorAll(".gs")].map(e => e.outerHTML).join("");
+  const gd = [...tmp.querySelectorAll(".gd")].map(e => e.outerHTML);
+  document.getElementById("stars").innerHTML = gs +
+    `<div class="grp grp-a">${gd.filter((_, i) => i % 2 === 0).join("")}</div>` +
+    `<div class="grp grp-b">${gd.filter((_, i) => i % 2 === 1).join("")}</div>`;
 }
 
 /* 吊るしオーナメント: [左%, ひもの長さpx, 玉の直径px, 色(gold/silver), 揺れの遅れs] */
@@ -692,7 +709,6 @@ function ornamentSvg(color, uid) {
   return `<svg viewBox="-50 -62 100 112"><defs><radialGradient id="ob${uid}" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="${g[0]}"/><stop offset=".35" stop-color="${g[1]}"/><stop offset=".8" stop-color="${g[2]}"/><stop offset="1" stop-color="${g[3]}"/></radialGradient></defs>` +
     `<circle r="48" fill="url(#ob${uid})"/>` + dots +
     `<ellipse cx="-16" cy="-20" rx="12" ry="7" fill="#fff" opacity=".6" transform="rotate(-30 -16 -20)"/>` +
-    `<path class="glint" d="M-16-40C-15-26-12-23 2-22-12-21-15-18-16-4-17-18-20-21-34-22-20-23-17-26-16-40z" fill="#fff"/>` +
     `<rect x="-11" y="-60" width="22" height="14" rx="3" fill="${color === "gold" ? "#e8b22e" : "#c9ced8"}" stroke="#fff" stroke-width="1.2"/></svg>`;
 }
 function setupOrnaments() {
@@ -703,12 +719,19 @@ function setupOrnaments() {
   });
 }
 
+function pauseOffscreen() {
+  const sky = document.querySelector(".sky");
+  if (!sky || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(([e]) => sky.classList.toggle("is-off", !e.isIntersecting)).observe(sky);
+}
+
 renderDeals();
 applyCoupons();
 setupHeroFx();
 setupHeroGold();
 setupStars();
 setupOrnaments();
+pauseOffscreen();
 setupGlitter();
 setupNav();
 setupCountdown();
