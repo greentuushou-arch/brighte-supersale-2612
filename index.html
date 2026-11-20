@@ -228,7 +228,6 @@ footer .law{font-size:14px}
 @media (min-width:1240px){
   .page{box-shadow:0 0 0 2px rgba(232,178,46,.55),0 0 60px rgba(0,0,0,.45)}
   /* 両脇: クリスマスの赤(上が明るく下へ深く)＋細い金の斜め縞 */
-  body{background:repeating-linear-gradient(135deg,rgba(255,215,120,.07) 0 2px,transparent 2px 26px),radial-gradient(70% 60% at 50% 0,#d3142f,transparent 75%),linear-gradient(#b30e27,#6e0816);background-attachment:fixed}
   .rail-nav a{background:rgba(7,13,44,.88);border-color:rgba(255,215,120,.6)}
   .rail-period{color:#fff}
   .countdown{background:rgba(7,13,44,.55)}
@@ -330,6 +329,52 @@ footer .law{font-size:14px}
   .tk-stub .btns{grid-template-columns:1.4fr 1fr}
   .tk-name{font-size:40px}
 }
+
+/* ═════ v8: 高級感のあるホリデーのきらめき ═════ */
+/* 吊るしオーナメント(金と深紅の玉・金のひも、ゆっくり揺れる) */
+.orn{position:absolute;left:0;right:0;top:0;height:0;z-index:2;pointer-events:none}
+.ob{position:absolute;top:0;width:var(--d);margin-left:calc(var(--d) / -2);padding-top:var(--len);transform-origin:50% 0;animation:swing 5s ease-in-out infinite alternate}
+.ob::before{content:"";position:absolute;left:50%;top:0;width:1.5px;height:calc(var(--len) + 2px);margin-left:-.75px;background:linear-gradient(#ffe39a,#c48d14)}
+.ob svg{display:block;width:100%;height:auto;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45)) drop-shadow(0 0 10px rgba(255,205,90,.35))}
+@keyframes swing{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+@media (max-width:420px){.orn-fv .ob{--d:24px!important}.orn-fv .ob:nth-child(2),.orn-fv .ob:nth-child(3){display:none}}
+
+/* FV: 金の大きなボケを足して、上の縁を金の細線で締める */
+.sky::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;z-index:3;background:linear-gradient(90deg,transparent,#e8b22e 15%,#fff1b8 50%,#e8b22e 85%,transparent)}
+.sky::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(60px 60px at 8% 42%,rgba(255,215,120,.22),transparent 70%),
+  radial-gradient(90px 90px at 92% 36%,rgba(255,215,120,.18),transparent 70%),
+  radial-gradient(70px 70px at 14% 70%,rgba(255,120,130,.16),transparent 70%),
+  radial-gradient(80px 80px at 86% 74%,rgba(255,215,120,.16),transparent 70%),
+  radial-gradient(50px 50px at 30% 20%,rgba(255,215,120,.14),transparent 70%),
+  radial-gradient(56px 56px at 72% 16%,rgba(255,215,120,.14),transparent 70%)}
+
+@media (min-width:1240px){
+  /* 両脇: 深いベルベットの赤＋金の粒がまたたく */
+  body{background:
+    radial-gradient(1.6px 1.6px at 18px 26px,rgba(255,226,150,.95),transparent),
+    radial-gradient(1.2px 1.2px at 92px 74px,rgba(255,226,150,.8),transparent),
+    radial-gradient(2px 2px at 140px 18px,rgba(255,236,180,.9),transparent),
+    radial-gradient(1.3px 1.3px at 58px 128px,rgba(255,226,150,.75),transparent),
+    radial-gradient(1.8px 1.8px at 150px 140px,rgba(255,226,150,.85),transparent),
+    radial-gradient(120% 70% at 50% 0,#c8142f,transparent 70%),
+    radial-gradient(90% 60% at 50% 110%,#5a0612,transparent 70%),
+    linear-gradient(#a10d24,#6b0716);
+    background-size:170px 170px,170px 170px,170px 170px,170px 170px,170px 170px,auto,auto,auto;background-attachment:fixed}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:
+    radial-gradient(2.4px 2.4px at 40px 60px,#fff3c4,transparent),
+    radial-gradient(1.8px 1.8px at 120px 110px,#ffe39a,transparent),
+    radial-gradient(2.2px 2.2px at 200px 30px,#fff3c4,transparent),
+    radial-gradient(1.6px 1.6px at 170px 190px,#ffe39a,transparent);
+    background-size:230px 230px;animation:glint 3.6s ease-in-out infinite alternate}
+  @keyframes glint{from{opacity:.25}to{opacity:1}}
+  /* 中央の柱: 金の二重線 */
+  .page{z-index:1;box-shadow:0 0 0 1px #e8b22e,0 0 0 7px #7e0a1b,0 0 0 8px rgba(232,178,46,.75),0 0 60px rgba(0,0,0,.55)}
+  .rail{z-index:2}
+  .orn-rail{top:0}
+  .rail-nav a{background:rgba(7,13,44,.9);border-color:rgba(255,215,120,.7)}
+  .countdown{background:rgba(7,13,44,.7);border-color:#e8b22e}
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -344,6 +389,7 @@ footer .law{font-size:14px}
 <!-- ▼ FV: 看板・写真・日付をひとつの夜空に -->
 <div class="sky">
 <div class="stars" id="stars" aria-hidden="true"></div>
+<div class="orn orn-fv" data-orn="fv" aria-hidden="true"></div>
 
 <div class="neon-top">
   <svg class="neon-sign" viewBox="0 0 800 440" role="img" aria-label="Brighte Rakutenスーパー SALE">
@@ -411,12 +457,14 @@ footer .law{font-size:14px}
 </main>
 
 <aside class="rail rail-l" aria-label="キャンペーン概要">
+  <div class="orn orn-rail" data-orn="l" aria-hidden="true"></div>
   <img class="rail-logo" src="images/logo-w.png" alt="Brighte" width="590" height="127">
   <p class="rail-sign"><span class="rs-1">Rakuten<i>スーパー</i></span><span class="rs-2">SALE</span></p>
   <p class="rail-period"><b>12/4</b>(金) 20:00 〜<br><b>12/11</b>(金) 1:59</p>
   <div class="countdown" id="countdown" aria-live="off"><small id="cdLabel">開始まで</small><p id="cdTime"></p></div>
 </aside>
 <aside class="rail rail-r" aria-label="ページ案内">
+  <div class="orn orn-rail" data-orn="r" aria-hidden="true"></div>
   <p class="rail-title">クーポン対象アイテム</p>
   <ul class="rail-nav" id="railNav"></ul>
 </aside>
@@ -619,11 +667,37 @@ function setupStars() {
   document.getElementById("stars").innerHTML = html;
 }
 
+/* 吊るしオーナメント: [左%, ひもの長さpx, 玉の直径px, 色(gold/red), 揺れの遅れs] */
+const ORNAMENTS = {
+  fv: [[4, 26, 34, "gold", 0], [11, 70, 24, "red", .8], [89, 64, 26, "red", .4], [96, 22, 36, "gold", 1.2]],
+  l:  [[18, 90, 46, "gold", 0], [38, 170, 34, "red", .7], [60, 60, 54, "gold", 1.4], [82, 140, 30, "red", .3]],
+  r:  [[16, 130, 32, "red", .5], [38, 56, 52, "gold", 1.1], [62, 180, 38, "gold", .2], [84, 80, 44, "red", .9]]
+};
+function ornamentSvg(color, uid) {
+  const g = color === "gold"
+    ? ["#fff6d2", "#f2c24c", "#b47d0c", "#5c3a04"]
+    : ["#ff8a96", "#d3142f", "#7e0a1b", "#3a0209"];
+  return `<svg viewBox="-50 -62 100 112"><defs><radialGradient id="ob${uid}" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="${g[0]}"/><stop offset=".35" stop-color="${g[1]}"/><stop offset=".8" stop-color="${g[2]}"/><stop offset="1" stop-color="${g[3]}"/></radialGradient></defs>` +
+    `<circle r="48" fill="url(#ob${uid})"/>` +
+    `<path d="M-44 4C-20 16 20 16 44 4" fill="none" stroke="#ffe39a" stroke-width="2.4" opacity=".7"/>` +
+    `<path d="M-40 -16C-18 -6 18 -6 40 -16" fill="none" stroke="#ffe39a" stroke-width="1.6" opacity=".45"/>` +
+    `<ellipse cx="-16" cy="-20" rx="11" ry="7" fill="#fff" opacity=".55" transform="rotate(-30 -16 -20)"/>` +
+    `<rect x="-11" y="-60" width="22" height="14" rx="3" fill="#e8b22e" stroke="#fff3c4" stroke-width="1.5"/></svg>`;
+}
+function setupOrnaments() {
+  let uid = 0;
+  document.querySelectorAll("[data-orn]").forEach(box => {
+    box.innerHTML = ORNAMENTS[box.dataset.orn].map(([x, len, d, color, dl]) =>
+      `<i class="ob" style="left:${x}%;--len:${len}px;--d:${d}px;animation-delay:${dl}s">${ornamentSvg(color, uid++)}</i>`).join("");
+  });
+}
+
 renderDeals();
 applyCoupons();
 setupHeroFx();
 setupHeroGold();
 setupStars();
+setupOrnaments();
 setupGlitter();
 setupNav();
 setupCountdown();
