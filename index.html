@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Brighte 楽天スーパーSALE</title>
+<!-- 確認用デモのため noindex。納品時に削除 -->
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap">
+<style>
+/* 構成: Brighte BF特集(brighte-blackfriday-2026)を楽天スーパーSALE用に作り替え。
+   色はクリスマスの夜空(ネイビー)×赤いリボン×金。看板は「Rakutenスーパー／SALE」の金ゴシック */
+:root{
+  color-scheme:dark;
+  --void:#0b1640;
+  --void2:#0f1d52;
+  --red:#d3142f;
+  --red-dk:#7e0a1b;
+  --line:rgba(232,178,46,.3);
+  --white:#fbf6ea;
+  --mute:#bdb3a1;
+  --gold:#e8b22e;
+  --gold-hi:#ffe58f;
+  --g-gold:linear-gradient(115deg,#b9840f 0%,#e8b22e 22%,#ffe58f 46%,#f0c246 58%,#c48d14 82%,#e8b22e 100%);
+  --num:"Jost","Noto Sans JP",sans-serif;
+  --font-body:"Jost","Noto Sans JP",system-ui,sans-serif;
+  --gut-l:max(16px,env(safe-area-inset-left,0px));
+  --gut-r:max(16px,env(safe-area-inset-right,0px));
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#060b24;color:var(--white);font-family:var(--font-body);font-weight:400;font-size:16px;line-height:1.85;letter-spacing:.07em;overflow-x:hidden;padding-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+[hidden]{display:none!important}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+.page{position:relative;max-width:700px;margin:0 auto;background:var(--void);overflow:hidden}
+
+/* ── 黒地のネオン看板 ─────── */
+.neon-top{position:relative;overflow:hidden;padding:clamp(22px,5vw,36px) 0 clamp(18px,4vw,28px);background:radial-gradient(120% 70% at 50% 100%,rgba(232,178,46,.2),transparent 60%),var(--void)}
+.neon-sign{position:relative;z-index:1;display:block;width:min(94%,660px);height:auto;margin:0 auto;overflow:visible}
+.neon-sign .gl-a{filter:blur(11px);opacity:.55}
+.neon-sign .gl-b{filter:blur(2.5px)}
+.lit-1{animation:lit 1.5s steps(1,end) both}
+.lit-2{animation:lit 1.5s steps(1,end) .32s both}
+.lit-3{animation:lit 1.1s steps(1,end) .7s both}
+/* 灯ったあと、2段の間の線と星だけがときどき瞬く */
+.spark{animation:lit 1.1s steps(1,end) .7s both,zap 5s steps(1,end) 2.4s infinite}
+@keyframes zap{0%,88%,100%{opacity:1}90%{opacity:.35}92%{opacity:1}94%{opacity:.5}96%{opacity:1}}
+@keyframes lit{0%{opacity:.18}12%{opacity:1}18%{opacity:.25}34%{opacity:1}40%{opacity:.35}52%{opacity:.9}58%{opacity:.3}70%,100%{opacity:1}}
+
+/* ── 看板の下: 4アイテムの集合写真に金のきらめきと流れ星 ─────── */
+.neon-top{padding-bottom:6px;background:var(--void)}
+.hero{position:relative;overflow:hidden;padding:0 var(--gut-r) clamp(26px,6vw,40px) var(--gut-l);background:radial-gradient(75% 48% at 50% 86%,rgba(232,178,46,.3),transparent 72%),var(--void)}
+.hero::after{content:"";position:absolute;left:16%;right:16%;bottom:4%;height:9%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,214,110,.5),transparent);filter:blur(8px);pointer-events:none}
+.hero-img{position:relative;z-index:1;width:min(90%,580px);margin:0 auto;filter:drop-shadow(0 16px 26px rgba(0,0,0,.65))}
+.fx{position:absolute;inset:0;pointer-events:none}
+.fx-back{z-index:0}
+.fx-front{z-index:2}
+.twk{position:absolute;width:var(--s);height:var(--s);margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2);opacity:0;animation:twinkle var(--d,3s) ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(255,210,90,.9))}
+.twk svg{display:block;width:100%;height:100%;fill:#ffe9a8}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.2) rotate(0deg)}45%,55%{opacity:1;transform:scale(1) rotate(40deg)}}
+.meteor{position:absolute;width:clamp(90px,26vw,170px);height:2px;border-radius:2px;background:linear-gradient(90deg,#fff8de,#ffd56a 18%,rgba(232,178,46,.35) 55%,transparent);opacity:0;transform-origin:left center;animation:meteor var(--d,7s) linear infinite}
+.meteor::before{content:"";position:absolute;left:-3px;top:-3px;width:8px;height:8px;border-radius:50%;background:#fffbe9;box-shadow:0 0 10px 3px rgba(255,214,110,.9)}
+@keyframes meteor{0%{opacity:0;transform:rotate(-28deg) translateX(0)}3%{opacity:1}18%{opacity:0;transform:rotate(-28deg) translateX(-62vw)}100%{opacity:0;transform:rotate(-28deg) translateX(-62vw)}}
+@media (min-width:768px){@keyframes meteor{0%{opacity:0;transform:rotate(-28deg) translateX(0)}3%{opacity:1}18%{opacity:0;transform:rotate(-28deg) translateX(-440px)}100%{opacity:0;transform:rotate(-28deg) translateX(-440px)}}}
+
+/* ── 集合写真まわりをクーポンバナーのように華やかに: 金の後光・光の波・ボケ・金粉 ─────── */
+.hero{background:radial-gradient(50% 36% at 50% 50%,rgba(255,206,92,.34),transparent 72%),radial-gradient(85% 46% at 50% 90%,rgba(232,178,46,.5),transparent 72%),radial-gradient(130% 60% at 50% 105%,rgba(160,100,10,.45),transparent 70%),var(--void)}
+.hero::after{left:8%;right:8%;bottom:3%;height:13%;background:radial-gradient(closest-side,rgba(255,226,140,.75),rgba(232,178,46,.25) 55%,transparent);filter:blur(10px)}
+.hero-wave{position:absolute;left:-18%;top:24%;width:136%;height:auto;overflow:visible}
+.hero-wave .gw-a{filter:blur(9px);opacity:.8}
+.hero-wave .gw-b{filter:blur(2.5px)}
+.hero-wave g{animation:wave 6s ease-in-out infinite alternate}
+@keyframes wave{from{transform:translateY(0)}to{transform:translateY(-12px)}}
+.bokeh{position:absolute;width:var(--s);height:var(--s);margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2);border-radius:50%;background:radial-gradient(circle,rgba(255,232,150,.6),rgba(232,178,46,.22) 58%,transparent 70%);animation:bokeh var(--d) ease-in-out infinite alternate}
+@keyframes bokeh{from{opacity:.3;transform:translateY(0)}to{opacity:.85;transform:translateY(-14px)}}
+.dust{position:absolute;width:var(--s);height:var(--s);border-radius:50%;background:#fff3c8;box-shadow:0 0 6px 1px rgba(255,200,80,.85);opacity:.2;animation:dust var(--d) ease-in-out infinite}
+@keyframes dust{0%,100%{opacity:.15}50%{opacity:1}}
+/* 写真の下の金の光を次のブロックへなめらかにつなぐ */
+.hero+.fv,.hero+.fv.is-short{background:linear-gradient(rgba(150,96,12,.42),rgba(150,96,12,.1) 45%,transparent 80%),var(--void)}
+
+/* ── FV: 金の光の帯と4アイテム ─────── */
+.fv{position:relative;overflow:hidden;padding:clamp(28px,7vw,48px) var(--gut-r) clamp(48px,10vw,72px) var(--gut-l);text-align:center}
+.fv>*:not(.swoosh):not(.glitter){position:relative}
+.swoosh{position:absolute;left:-10%;top:0;width:120%;height:auto;pointer-events:none;opacity:.9}
+.glitter{position:absolute;inset:0;pointer-events:none}
+.glitter i{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--gold-hi);box-shadow:0 0 8px 2px rgba(255,214,110,.7);animation:tw 3.2s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:1;transform:scale(1)}}
+.period{display:inline-flex;align-items:baseline;justify-content:center;gap:clamp(6px,2vw,12px);margin:0;padding:8px clamp(18px,5vw,28px) 10px;border:1px solid var(--gold);border-radius:999px;color:var(--white);font-size:clamp(13px,3.6vw,17px);letter-spacing:.06em;line-height:1.3;white-space:nowrap}
+.period b{font:500 clamp(22px,6.2vw,32px)/1 var(--num);letter-spacing:.02em;color:var(--gold-hi);margin-right:2px}
+.period i{font-style:normal;color:var(--gold)}
+.fv h1{display:flex;justify-content:center;align-items:center;gap:clamp(8px,2.4vw,18px);margin:clamp(14px,3.6vw,24px) 0 0;font-weight:700;line-height:1.25}
+.fv-num{font:700 min(44vw,290px)/.8 var(--num);letter-spacing:-.02em;color:var(--gold);background:var(--g-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding-bottom:.04em}
+.fv-h{display:grid;text-align:left;font-size:min(10.4vw,68px);letter-spacing:.06em}
+.fv-h small{font-size:.52em;font-weight:500;letter-spacing:.12em;color:var(--mute)}
+.fv-h em{font-style:normal;color:var(--gold);background:var(--g-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.fv-lead{margin:clamp(16px,4vw,26px) 0 0;font-size:clamp(16px,4.3vw,19px);line-height:1.8}
+.fv-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(8px,2.4vw,14px);margin-top:clamp(26px,6vw,38px)}
+.fv-grid a{display:block;border:1px solid var(--line);transition:border-color .2s,transform .2s}
+.fv-grid a:hover{border-color:var(--gold);transform:translateY(-3px)}
+.fv-grid img{width:100%;aspect-ratio:1}
+
+/* ── クーポンブロック ─────── */
+.deal{position:relative;overflow:hidden;padding:64px var(--gut-r) 60px var(--gut-l);text-align:center;background:var(--void);border-top:1px solid var(--line)}
+.deal:nth-of-type(even){background:var(--void2)}
+.deal-notice{display:inline-block;margin:0;padding:4px 18px 6px;border:2px solid var(--gold);color:var(--gold);font-size:clamp(17px,4.8vw,22px);font-weight:500;letter-spacing:.1em;line-height:1.5}
+.deal-title{margin:18px 0 0;font:700 min(13.4vw,84px)/1 var(--num);letter-spacing:.02em;color:#fff}
+.deal-title .nw{white-space:nowrap}
+.deal-title.is-long{font-size:min(11vw,70px);line-height:1.05}
+.deal-kana{margin:10px 0 0;font-size:clamp(16px,4.4vw,20px);font-weight:500;letter-spacing:.14em;color:var(--mute)}
+.banner{display:block;margin:30px calc(-1 * var(--gut-r)) 0 calc(-1 * var(--gut-l));text-decoration:none}
+.banner img{width:100%;aspect-ratio:720/480}
+/* バナー未着の間の仮枠 */
+.banner.is-wait{display:grid;grid-template-columns:44% 1fr;align-items:center;gap:16px;aspect-ratio:720/480;margin-inline:0;padding:16px;border:1px solid var(--line);background:radial-gradient(90% 90% at 100% 0,rgba(232,178,46,.16),transparent 60%),#0f0d09;text-align:left}
+.banner.is-wait img{aspect-ratio:1}
+.banner.is-wait p{margin:0;display:grid;gap:6px;font-size:clamp(15px,4.2vw,20px);font-weight:500;line-height:1.5}
+.banner.is-wait strong{display:flex;align-items:baseline;gap:2px;font:700 clamp(30px,8.6vw,56px)/1 var(--num);color:var(--gold);letter-spacing:0;white-space:nowrap}
+.banner.is-wait strong em{font-style:normal;font-size:.46em;font-weight:600;font-family:var(--num),"Noto Sans JP"}
+.banner.is-wait .cp-k{font:500 clamp(13px,3.6vw,17px)/1 var(--num);letter-spacing:.28em;color:var(--gold-hi)}
+.btns{display:grid;gap:12px;margin-top:26px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:62px;padding:12px 18px;border-radius:999px;text-decoration:none;text-align:center;font-weight:500;font-size:clamp(16px,4.5vw,19px);line-height:1.4;letter-spacing:.08em;transition:transform .12s,filter .2s}
+.btn:active{transform:translateY(3px)}
+.btn-coupon{background:var(--gold);background-image:var(--g-gold);color:#1b120b}
+.btn-coupon:hover{filter:brightness(1.06)}
+.btn-line{border:1px solid rgba(251,246,234,.7);color:var(--white)}
+.btn-line:hover{border-color:var(--gold);color:var(--gold)}
+.btn.is-wait{pointer-events:none}
+.deal .note{margin:16px 0 0;font-size:12.5px;color:var(--mute);letter-spacing:.06em}
+/* あわせてチェック */
+.deal.extra{background:var(--void)}
+.extra-h{margin:18px 0 0;font-size:min(8.4vw,46px);font-weight:700;line-height:1.3;letter-spacing:.08em;color:#fff}
+.banner.is-wide img{aspect-ratio:880/320}
+.option-cp{margin-top:56px;padding:30px 18px 26px;border:1px solid var(--gold);border-radius:14px;background:radial-gradient(90% 70% at 50% 0,rgba(232,178,46,.18),transparent 70%),#0f0d09}
+.option-cp .cp-k{margin:0;font:500 clamp(14px,3.8vw,17px)/1 var(--num);letter-spacing:.3em;color:var(--gold-hi)}
+.option-cp h3{margin:12px 0 0;font-size:min(8vw,40px);font-weight:700;letter-spacing:.1em;color:var(--gold);background:var(--g-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.option-cp h3 small{display:block;margin-bottom:4px;font-size:.6em}
+.option-items{margin:12px 0 0;font-size:clamp(15px,4.2vw,18px);line-height:1.7;letter-spacing:.06em}
+.option-cp .btns{margin-top:22px}
+
+/* ── 注意・フッター ─────── */
+.caution{padding:40px var(--gut-r) 40px var(--gut-l);border-top:1px solid var(--line)}
+.caution h2{margin:0;font-weight:500;font-size:17px;letter-spacing:.1em}
+.caution ul{margin:10px 0 0;padding-left:1.2em;font-size:13px;line-height:1.8;color:var(--mute)}
+footer{display:grid;justify-items:center;gap:18px;padding:48px var(--gut-r) 48px var(--gut-l);background:var(--void2);text-align:center}
+footer img{width:150px}
+footer .btn{width:min(100%,360px)}
+footer .law{font-size:13px;color:var(--mute)}
+
+/* ── スマホ: 下部タブ ─────── */
+.tabbar{position:fixed;z-index:30;left:0;right:0;bottom:0;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:#120f0a;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);padding-inline:env(safe-area-inset-left,0px) env(safe-area-inset-right,0px)}
+.tabbar a{display:grid;place-items:center;min-height:56px;padding:4px 2px;font:500 clamp(11px,3.1vw,14px)/1.25 var(--num);letter-spacing:.04em;text-align:center;text-decoration:none;color:#fff;transition:background .2s,color .2s}
+.tabbar a+a{border-left:1px solid rgba(255,255,255,.12)}
+.tabbar a.is-here{background:var(--gold);background-image:var(--g-gold);color:#1b120b}
+.rail{display:none}
+
+@media (min-width:768px){
+  .fv{padding-inline:56px}
+  .deal{padding:88px 56px 80px}
+  .banner{margin-inline:-56px}
+  .banner.is-wait{margin-inline:0;padding:24px}
+  .caution{padding:44px 56px}
+}
+/* ── PC 1240px以上: 両脇のレール ─────── */
+@media (min-width:1240px){
+  body{padding-bottom:0}
+  .tabbar{display:none}
+  .page{box-shadow:0 0 0 1px rgba(232,178,46,.35)}
+  .rail{position:fixed;z-index:3;top:0;bottom:0;width:calc((100vw - 700px) / 2);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px clamp(16px,2vw,44px);color:var(--white)}
+  .rail-l{left:0}
+  .rail-r{right:0}
+  .rail-logo{width:min(56%,170px)}
+  .rail-sign{display:grid;margin:18px 0 0;font:600 clamp(40px,3.8vw,68px)/1 var(--num);text-align:center;letter-spacing:.03em;color:#ffe9a8}
+  .rail-sign span:last-child{color:var(--gold);background:var(--g-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .rail-period{margin:16px 0 0;font-size:15px;letter-spacing:.06em;text-align:center;line-height:1.6}
+  .rail-period b{font:500 22px/1 var(--num);color:var(--gold-hi);letter-spacing:.02em}
+  .countdown{container-type:inline-size;width:100%;max-width:330px;margin-top:24px;padding:16px 12px 18px;border:2px solid var(--gold);border-radius:14px;text-align:center}
+  .countdown small{font-size:14px;letter-spacing:.12em;color:var(--gold-hi)}
+  .countdown p{display:flex;justify-content:center;align-items:baseline;gap:0;margin:6px 0 0;white-space:nowrap;font-size:min(15px,4.8cqi)}
+  .countdown b{font:600 min(40px,11.6cqi)/1 var(--num);letter-spacing:.02em;color:var(--gold);font-variant-numeric:tabular-nums}
+  .countdown span{margin:0 3px 0 1px}
+  .countdown.is-end p{font-size:18px;font-weight:500}
+  .rail-title{margin:0 0 14px;font-size:19px;font-weight:500;letter-spacing:.1em}
+  .rail-nav{list-style:none;margin:0;padding:0;width:100%;max-width:330px;display:grid;gap:8px}
+  .rail-nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border:1px solid rgba(232,178,46,.5);border-radius:10px;background:#14110c;color:var(--white);text-decoration:none;font-size:15px;line-height:1.4;transition:background .2s,color .2s,transform .2s}
+  .rail-nav span{display:grid}
+  .rail-nav span b{font:600 17px/1.3 var(--num);letter-spacing:.04em}
+  .rail-nav span small{font-size:12.5px;color:var(--mute)}
+  .rail-nav em{font:700 18px var(--num);font-style:normal;color:var(--gold)}
+  .rail-nav a:hover,.rail-nav a.is-here{background:var(--gold);background-image:var(--g-gold);border-color:var(--gold);color:#1b120b;transform:translateX(-4px)}
+  .rail-nav a:hover small,.rail-nav a.is-here small,.rail-nav a:hover em,.rail-nav a.is-here em{color:#1b120b}
+}
+
+/* ═════ 楽天スーパーSALE: 夜空×赤いリボン ═════ */
+.period{font-size:clamp(14px,3.8vw,17px);gap:clamp(4px,1.6vw,12px);padding-inline:clamp(14px,4.4vw,28px)}
+.period b{font-size:clamp(20px,5.8vw,32px)}
+.demo-band{position:sticky;top:0;z-index:40;background:var(--gold);background-image:var(--g-gold);color:#1b120b;text-align:center;font-size:14px;letter-spacing:0;padding:5px 16px;line-height:1.5}
+/* 夜空の星(看板・写真・FVの背景) */
+.neon-top,.hero,.fv{background-color:var(--void)}
+.neon-top{background:radial-gradient(1.2px 1.2px at 12% 18%,#fff 60%,transparent),radial-gradient(1px 1px at 28% 72%,#fff 60%,transparent),radial-gradient(1.4px 1.4px at 46% 10%,#fff 60%,transparent),radial-gradient(1px 1px at 63% 64%,#fff 60%,transparent),radial-gradient(1.3px 1.3px at 81% 22%,#fff 60%,transparent),radial-gradient(1px 1px at 92% 80%,#fff 60%,transparent),radial-gradient(1px 1px at 6% 88%,#fff 60%,transparent),radial-gradient(90% 70% at 50% 0,#1b2c78,transparent 70%),var(--void)}
+.hero{background:radial-gradient(48% 34% at 50% 50%,rgba(255,206,92,.26),transparent 72%),radial-gradient(85% 46% at 50% 92%,rgba(211,20,47,.42),transparent 72%),radial-gradient(130% 60% at 50% 108%,rgba(126,10,27,.7),transparent 70%),radial-gradient(120% 80% at 50% 0,#14236a,transparent 70%),var(--void)}
+.hero+.fv{background:linear-gradient(rgba(126,10,27,.62),rgba(126,10,27,.18) 45%,transparent 85%),var(--void)}
+/* 赤いリボン(写真の後ろを横切る) */
+.ribbon{position:absolute;left:-16%;top:16%;width:132%;height:auto;overflow:visible;pointer-events:none}
+.ribbon g{animation:wave 7s ease-in-out infinite alternate}
+.ribbon .rb-sh{filter:blur(10px);opacity:.55}
+/* 看板の中の星(稲妻のかわり) */
+.neon-sign .star-mid{transform-box:fill-box;transform-origin:center}
+/* クーポンブロック: 交互に夜空のネイビー */
+.deal{padding:52px var(--gut-r) 52px var(--gut-l);border-top:1px solid rgba(232,178,46,.28)}
+.deal:nth-of-type(odd){background:radial-gradient(90% 50% at 50% 0,rgba(211,20,47,.18),transparent 70%),var(--void)}
+.deal:nth-of-type(even){background:radial-gradient(90% 50% at 50% 0,rgba(232,178,46,.12),transparent 70%),var(--void2)}
+.deal .note{font-size:14px}
+.deal-kana{font-size:clamp(16px,4.4vw,20px)}
+.btn-line{background:rgba(11,22,64,.5)}
+/* 注意は中央・14px以上 */
+.caution{padding:44px var(--gut-r);text-align:center;background:var(--void)}
+.caution ul{list-style:none;padding:0;font-size:14px}
+footer{background:var(--void2)}
+footer .law{font-size:14px}
+/* 下部タブ */
+.tabbar{background:#08113a}
+.tabbar a{font-size:14px}
+@media (min-width:768px){.deal{padding:60px 56px}.caution{padding:52px 56px}}
+@media (min-width:1240px){
+  .page{box-shadow:0 0 0 1px rgba(232,178,46,.35),0 0 80px rgba(211,20,47,.25)}
+  body{background:radial-gradient(60% 50% at 50% 100%,rgba(126,10,27,.55),transparent 70%),#060b24}
+  .rail-sign{font-size:clamp(32px,2.9vw,52px);line-height:1.1}
+  .rail-sign .rs-1{font-size:.62em;letter-spacing:.02em}
+  .rail-sign .rs-1 i{font-style:normal;font-family:"Noto Sans JP",sans-serif;font-weight:900}
+  .rail-sign .rs-2{font-size:1.5em;color:var(--gold);background:var(--g-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .rail-nav a{background:#0f1d52}
+  .rail-nav span small{font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="demo-band">制作確認用のデモページです</div>
+
+<main class="page">
+
+<!-- ▼ 夜空の看板: Rakutenスーパー / SALE -->
+<div class="neon-top">
+  <svg class="neon-sign" viewBox="0 0 800 480" role="img" aria-label="Brighte Rakutenスーパー SALE">
+    <defs>
+      <text id="t-top" font-family="Jost,sans-serif" font-weight="600" font-size="104" x="400" y="192" text-anchor="middle" textLength="640" lengthAdjust="spacingAndGlyphs">Rakuten<tspan font-family="'Noto Sans JP',sans-serif" font-weight="900">スーパー</tspan></text>
+      <text id="t-sale" font-family="Jost,sans-serif" font-weight="600" font-size="196" x="400" y="412" text-anchor="middle" textLength="560" lengthAdjust="spacing">SALE</text>
+      <linearGradient id="gd-a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6d6"/><stop offset=".55" stop-color="#ffd970"/><stop offset="1" stop-color="#e9a91c"/></linearGradient>
+      <linearGradient id="gd-b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a0"/><stop offset=".5" stop-color="#f3bd3a"/><stop offset="1" stop-color="#c88a0e"/></linearGradient>
+      <!-- 角丸の枠。上の中央はロゴのために切ってある -->
+      <path id="p-frame" d="M318 40H84a44 44 0 0 0-44 44v312a44 44 0 0 0 44 44h632a44 44 0 0 0 44-44V84a44 44 0 0 0-44-44H482"/>
+      <!-- 2段の間の線と、夜空の星 -->
+      <path id="p-wire" d="M96 236H364M436 236H704"/>
+      <path id="p-star" d="M400 210C402 228 406 232 424 236 406 240 402 244 400 262 398 244 394 240 376 236 394 232 398 228 400 210z"/>
+    </defs>
+
+    <g class="lit-2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#p-frame" stroke="#e8a20f" stroke-width="9" class="gl-a"/>
+      <use href="#p-frame" stroke="#ffc53d" stroke-width="4" class="gl-b"/>
+      <use href="#p-frame" stroke="#fff0c4" stroke-width="2.2"/>
+    </g>
+
+    <image href="images/logo-w.png" x="330" y="23" width="140" height="30"/>
+
+    <g class="lit-1">
+      <use href="#t-top" fill="#f0aa12" class="gl-a"/>
+      <use href="#t-top" fill="#ffd56a" class="gl-b" opacity=".6"/>
+      <use href="#t-top" fill="url(#gd-a)"/>
+    </g>
+
+    <g class="lit-3 spark" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#p-wire" fill="none" stroke="#ffc53d" stroke-width="6" class="gl-a"/>
+      <use href="#p-wire" fill="none" stroke="#fff0c4" stroke-width="2"/>
+      <use href="#p-star" fill="#ffc53d" class="gl-a"/>
+      <use href="#p-star" fill="#fff3cc"/>
+    </g>
+
+    <g class="lit-2">
+      <use href="#t-sale" fill="#f0aa12" class="gl-a"/>
+      <use href="#t-sale" fill="#ffc53d" class="gl-b" opacity=".6"/>
+      <use href="#t-sale" fill="url(#gd-b)"/>
+    </g>
+  </svg>
+</div>
+
+<!-- ▼ 看板の下: 4アイテムの集合写真 -->
+<div class="hero">
+  <div class="fx fx-back" id="fxBack" aria-hidden="true"></div>
+  <img class="hero-img" src="images/products.webp" alt="ストレートアイロン、シャワードライヤー、エレキブラシプラス、エレキリフト" width="900" height="873">
+  <div class="fx fx-front" id="fxFront" aria-hidden="true"></div>
+</div>
+
+<!-- ▼ FV -->
+<header class="fv">
+  <svg class="swoosh" viewBox="0 0 840 520" aria-hidden="true">
+    <defs><linearGradient id="sw" x1="0" x2="1"><stop offset="0" stop-color="#e8b22e" stop-opacity="0"/><stop offset=".45" stop-color="#ffe58f"/><stop offset="1" stop-color="#e8b22e" stop-opacity="0"/></linearGradient></defs>
+    <g fill="none" stroke="url(#sw)">
+      <path d="M0 470C240 370 500 430 840 300" stroke-width="2.4"/>
+      <path d="M0 495C260 395 520 455 840 335" stroke-width="1" opacity=".6"/>
+      <path d="M0 515C280 420 540 475 840 365" stroke-width=".6" opacity=".4"/>
+    </g>
+  </svg>
+  <div class="glitter" id="glitter" aria-hidden="true"></div>
+
+  <p class="period"><span><b>12/4</b>(金) 20:00</span><i>〜</i><span><b>12/11</b>(金) 1:59</span></p>
+  <h1><span class="fv-num">4</span><span class="fv-h"><small>Brighte 人気の</small><span>アイテムに</span><em>クーポン</em></span></h1>
+  <p class="fv-lead">美顔器、ドライヤー、ストレートアイロン<br>気になっていたあのアイテムを<br>この機会に</p>
+  <div class="fv-grid" id="fvGrid"></div>
+</header>
+
+<!-- ▼ クーポンブロック(ITEMSから生成) -->
+<div id="deals"></div>
+
+
+<section class="caution">
+  <h2>ご注意</h2>
+  <ul>
+    <li>クーポンは取得が必要です。枚数・使える回数には条件があります。</li>
+    <li>内容と条件は各クーポンページ・商品ページをご確認ください。</li>
+    <li>【公式】Brighte Store 楽天市場店でのご購入に限ります。</li>
+  </ul>
+</section>
+
+<footer>
+  <img src="images/logo-w.png" alt="Brighte" width="590" height="127" loading="lazy">
+  <a class="btn btn-coupon" href="https://www.rakuten.co.jp/brighte-onlineshop/">Brighte 楽天市場店トップへ</a>
+  <a class="law" href="https://www.rakuten.co.jp/brighte-onlineshop/info.html">特定商取引法に基づく表記</a>
+</footer>
+</main>
+
+<aside class="rail rail-l" aria-label="キャンペーン概要">
+  <img class="rail-logo" src="images/logo-w.png" alt="Brighte" width="590" height="127">
+  <p class="rail-sign"><span class="rs-1">Rakuten<i>スーパー</i></span><span class="rs-2">SALE</span></p>
+  <p class="rail-period"><b>12/4</b>(金) 20:00 〜<br><b>12/11</b>(金) 1:59</p>
+  <div class="countdown" id="countdown" aria-live="off"><small id="cdLabel">開始まで</small><p id="cdTime"></p></div>
+</aside>
+<aside class="rail rail-r" aria-label="ページ案内">
+  <p class="rail-title">クーポン対象アイテム</p>
+  <ul class="rail-nav" id="railNav"></ul>
+</aside>
+<nav class="tabbar" id="tabbar" aria-label="ページ内メニュー"></nav>
+
+<script>
+/* ▼ 編集箇所 ───────────────────────────
+   banner : クーポンバナー画像。null なら商品写真＋「クーポン配布中」の枠を表示
+   coupon : クーポン獲得URL。"#" の間はボタンを押せないだけ(文言はそのまま)
+   cpText : ボタンの文言 */
+const ITEMS = [
+  {id:"item1", cat:"リフト美顔器", name:"ELEKI LIFT", kana:"エレキリフト", tab:"ELEKI<br>LIFT",
+   img:"lift.webp", banner:"coupon-lift.jpg", note:"※特別セットはお一人様1セット限り",
+   off:"38,054", cpText:"38,054円OFFクーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=MjZPMC00TDlKLUhCMUotQVgyMw--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-fl170/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-fl170/"},
+  {id:"item2", cat:"ブラシ型美顔器", name:"ELEKI BRUSH＋", title:"ELEKI <span class=\"nw\">BRUSH＋</span>", kana:"エレキブラシプラス", tab:"ELEKI<br>BRUSH＋",
+   img:"brush.webp", banner:"coupon-brush.jpg", note:"※特別セットはお一人様1セット限り",
+   off:"8,634", cpText:"8,634円OFFクーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=OUIyRi1CVVdFLUUyRVgtUUFTUw--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-fs145/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-fs145/"},
+  {id:"item3", cat:"ドライヤー", name:"SHOWER DRYER", kana:"シャワードライヤー", tab:"SHOWER<br>DRYER",
+   img:"dryer.webp", banner:"coupon-dryer.jpg", note:"※特別セットはお一人様1セット限り",
+   off:"7,718", cpText:"7,718円OFFクーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=SkFCTC01QklDLVhNVlYtRVZPQQ--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-sd173/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-sd173/"},
+  {id:"item4", cat:"ストレートアイロン", name:"3D SILK STRAIGHT IRON", long:true, kana:"3D シルクストレートアイロン", tab:"3D SILK<br>IRON",
+   img:"iron.webp", banner:"coupon-iron.jpg", note:"※特別セットはお一人様1セット限り",
+   off:"3,819", cpText:"3,819円OFFクーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=OVUySC1FT05aLVNSUE8tWlJUUw--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-3d138/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-3d138/"}
+];
+/* ▲ 編集箇所 ─────────────────────────── */
+
+const pad2 = n => String(n).padStart(2, "0");
+
+function bannerHtml(it) {
+  if (it.banner) {
+    return `<a class="banner" href="${it.url}"><img src="images/${it.banner}" alt="${it.name} クーポン" width="720" height="480" loading="lazy"></a>`;
+  }
+  return `<a class="banner is-wait" href="${it.url}">
+      <img src="images/${it.img}" alt="" width="1000" height="1000" loading="lazy">
+      <p><small class="cp-k">COUPON</small><strong>${it.off}<em>円OFF</em></strong>クーポン配布中</p>
+    </a>`;
+}
+
+function renderDeals() {
+  document.getElementById("deals").innerHTML = ITEMS.map((it, i) => `
+    <section class="deal" id="${it.id}">
+      <p class="deal-notice">${it.cat}</p>
+      <h2 class="deal-title${it.long ? " is-long" : ""}">${it.title || it.name}</h2>
+      <p class="deal-kana">${it.kana}</p>
+      ${bannerHtml(it)}
+      <div class="btns">
+        <a class="btn btn-coupon" data-coupon="${it.coupon}" href="${it.coupon}">${it.cpText}</a>
+        <a class="btn btn-line" href="${it.url}">商品ページを見る</a>
+      </div>
+      ${it.note ? `<p class="note">${it.note}</p>` : ""}
+    </section>`).join("");
+
+  document.getElementById("fvGrid").innerHTML = ITEMS.map(it =>
+    `<a href="#${it.id}"><img src="images/${it.img}" alt="${it.name} ${it.kana}" width="1000" height="1000"></a>`).join("");
+  document.getElementById("railNav").innerHTML = ITEMS.map((it, i) =>
+    `<li><a href="#${it.id}" data-nav="${it.id}"><span><b>${it.name}</b><small>${it.cat}</small></span><em>${i + 1}</em></a></li>`).join("");
+  document.getElementById("tabbar").innerHTML = ITEMS.map(it =>
+    `<a href="#${it.id}" data-nav="${it.id}">${it.tab}</a>`).join("");
+}
+
+function applyCoupons() {
+  /* URL未設定の間は押せないだけで、見た目と文言はそのまま */
+  document.querySelectorAll("[data-coupon]").forEach(el => {
+    if (el.dataset.coupon && el.dataset.coupon !== "#") return;
+    el.classList.add("is-wait");
+    el.setAttribute("aria-disabled", "true");
+    el.tabIndex = -1;
+  });
+}
+
+function setupGlitter() {
+  const box = document.getElementById("glitter");
+  const spots = [[8,14],[18,40],[30,9],[44,30],[62,12],[74,38],[88,20],[93,52],[6,62],[84,70],[52,4],[24,74]];
+  box.innerHTML = spots.map(([x, y], i) =>
+    `<i style="left:${x}%;top:${y}%;animation-delay:${(i * 0.37).toFixed(2)}s"></i>`).join("");
+}
+
+function setupNav() {
+  const links = [...document.querySelectorAll("[data-nav]")];
+  if (!("IntersectionObserver" in window)) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(a => a.classList.toggle("is-here", a.dataset.nav === e.target.id));
+    });
+  }, {rootMargin: "-45% 0px -50% 0px"});
+  ITEMS.forEach(it => io.observe(document.getElementById(it.id)));
+}
+
+/* カウントダウン: 開始前は「開始まで」、期間中は「終了まで」 */
+const SALE_START = Date.parse("2026-12-04T20:00:00+09:00");
+const SALE_END = Date.parse("2026-12-11T02:00:00+09:00");
+function setupCountdown() {
+  const box = document.getElementById("countdown");
+  const label = document.getElementById("cdLabel");
+  const out = document.getElementById("cdTime");
+  function tick() {
+    const now = Date.now();
+    if (now >= SALE_END) {
+      box.classList.add("is-end");
+      label.textContent = "楽天スーパーSALE";
+      out.textContent = "終了しました";
+      return false;
+    }
+    const before = now < SALE_START;
+    label.textContent = before ? "開始まで" : "終了まで";
+    const left = Math.floor(((before ? SALE_START : SALE_END) - now) / 1000);
+    const d = Math.floor(left / 86400), h = Math.floor(left % 86400 / 3600);
+    const m = Math.floor(left % 3600 / 60), sec = left % 60;
+    out.innerHTML = `<b>${d}</b><span>日</span><b>${pad2(h)}</b><span>時間</span><b>${pad2(m)}</b><span>分</span><b>${pad2(sec)}</b><span>秒</span>`;
+    return true;
+  }
+  if (tick()) {
+    const timer = setInterval(() => { if (!tick()) clearInterval(timer); }, 1000);
+  }
+}
+
+/* 看板の下の飾り: [左%, 上%, 大きさpx, 周期s, 遅れs] */
+const TWINKLES = [[9,12,26,3.2,0],[86,8,34,3.6,.8],[22,46,18,2.8,1.4],[93,40,22,3.1,.3],[6,72,30,3.8,2],[80,74,20,2.9,1.1],[50,4,16,3.4,2.4],[66,30,14,2.6,.6],[36,86,18,3.3,1.8],[14,28,12,2.7,2.9],[96,88,16,3,1.6]];
+const METEORS = [[78,0,7,0],[102,10,8.5,2.6],[64,-4,9,5.1]];
+function setupHeroFx() {
+  const star = '<svg viewBox="-24 -24 48 48"><path d="M0-24C2-6 6-2 24 0 6 2 2 6 0 24-2 6-6 2-24 0-6-2-2-6 0-24z"/></svg>';
+  document.getElementById("fxFront").innerHTML = TWINKLES.map(([x, y, sz, d, dl]) =>
+    `<i class="twk" style="left:${x}%;top:${y}%;--s:${sz}px;--d:${d}s;animation-delay:${dl}s">${star}</i>`).join("");
+  document.getElementById("fxBack").innerHTML = METEORS.map(([x, y, d, dl]) =>
+    `<i class="meteor" style="left:${x}%;top:${y}%;--d:${d}s;animation-delay:${dl}s"></i>`).join("");
+}
+
+/* 赤いリボン・金のボケ・金粉(位置は毎回同じになるよう固定の乱数で配置) */
+function seeded(seed) {
+  let x = seed;
+  return () => { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; };
+}
+function setupHeroGold() {
+  const back = document.getElementById("fxBack");
+  const front = document.getElementById("fxFront");
+  const rand = seeded(20261119);
+  const wave = `<svg class="ribbon" viewBox="0 0 1000 600" aria-hidden="true">
+    <defs>
+      <linearGradient id="rb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff4a5c"/><stop offset=".45" stop-color="#d3142f"/><stop offset="1" stop-color="#6e0816"/></linearGradient>
+      <linearGradient id="rbg" x1="0" x2="1"><stop offset="0" stop-color="#ffe58f" stop-opacity="0"/><stop offset=".5" stop-color="#ffe58f"/><stop offset="1" stop-color="#ffe58f" stop-opacity="0"/></linearGradient>
+    </defs>
+    <g fill="none" stroke-linecap="round">
+      <path class="rb-sh" d="M-20 470C230 360 470 470 1020 170" stroke="#6e0816" stroke-width="64"/>
+      <path d="M-20 460C230 350 470 460 1020 160" stroke="url(#rb)" stroke-width="54"/>
+      <path d="M-20 446C230 336 470 446 1020 146" stroke="#ff8a96" stroke-width="3" opacity=".7"/>
+      <path d="M0 560C300 470 560 505 1000 300" stroke="url(#rb)" stroke-width="22" opacity=".85"/>
+      <path d="M0 520C260 420 520 470 1000 220" stroke="url(#rbg)" stroke-width="2"/>
+    </g></svg>`;
+  const bokeh = Array.from({length: 12}, () => {
+    const x = (rand() * 100).toFixed(1), y = (rand() * 100).toFixed(1);
+    const s = Math.round(18 + rand() * 46), d = (3 + rand() * 3).toFixed(1), dl = (rand() * -6).toFixed(1);
+    return `<i class="bokeh" style="left:${x}%;top:${y}%;--s:${s}px;--d:${d}s;animation-delay:${dl}s"></i>`;
+  }).join("");
+  const dust = n => Array.from({length: n}, () => {
+    const x = (rand() * 100).toFixed(1), y = (30 + rand() * 70).toFixed(1);
+    const s = (1.5 + rand() * 2.5).toFixed(1), d = (1.6 + rand() * 2.4).toFixed(1), dl = (rand() * -4).toFixed(1);
+    return `<i class="dust" style="left:${x}%;top:${y}%;--s:${s}px;--d:${d}s;animation-delay:${dl}s"></i>`;
+  }).join("");
+  back.insertAdjacentHTML("afterbegin", bokeh + wave + dust(40));
+  front.insertAdjacentHTML("beforeend", dust(18));
+}
+
+renderDeals();
+applyCoupons();
+setupHeroFx();
+setupHeroGold();
+setupGlitter();
+setupNav();
+setupCountdown();
+</script>
+</body>
+</html>
