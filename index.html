@@ -251,6 +251,9 @@ footer .law{font-size:14px}
 .flake svg{display:block;width:100%;height:100%;fill:none;stroke:#fff8e0;stroke-width:2.2;stroke-linecap:round;filter:drop-shadow(0 0 4px rgba(255,236,170,.95));animation:sway calc(var(--d) / 2) ease-in-out infinite alternate}
 @keyframes fall{0%{top:-8%;opacity:0}8%{opacity:1}88%{opacity:1}100%{top:104%;opacity:0}}
 @keyframes sway{from{transform:translateX(-14px) rotate(0deg)}to{transform:translateX(14px) rotate(120deg)}}
+/* 商品写真(クーポンバナーのかわり) */
+.banner.is-photo{width:min(100%,520px);margin:30px auto 0;border:1px solid rgba(232,178,46,.45)}
+.banner.is-photo img{aspect-ratio:1}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -346,22 +349,22 @@ footer .law{font-size:14px}
 
 <script>
 /* ▼ 編集箇所 ───────────────────────────
-   banner : クーポンバナー画像。null なら商品写真＋「クーポン配布中」の枠を表示
+   banner : クーポンバナー画像。null なら商品写真だけを表示(スーパーSALEのクーポン内容が決まるまで)
    coupon : クーポン獲得URL。"#" の間はボタンを押せないだけ(文言はそのまま)
    cpText : ボタンの文言 */
 const ITEMS = [
   {id:"item1", cat:"リフト美顔器", name:"ELEKI LIFT", kana:"エレキリフト", tab:"ELEKI<br>LIFT",
-   img:"lift.webp", banner:"coupon-lift.jpg", note:"※特別セットはお一人様1セット限り",
-   off:"38,054", cpText:"38,054円OFFクーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=MjZPMC00TDlKLUhCMUotQVgyMw--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-fl170/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-fl170/"},
+   img:"lift.webp", banner:null, note:"",
+   off:"", cpText:"クーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=MjZPMC00TDlKLUhCMUotQVgyMw--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-fl170/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-fl170/"},
   {id:"item2", cat:"ブラシ型美顔器", name:"ELEKI BRUSH＋", title:"ELEKI <span class=\"nw\">BRUSH＋</span>", kana:"エレキブラシプラス", tab:"ELEKI<br>BRUSH＋",
-   img:"brush.webp", banner:"coupon-brush.jpg", note:"※特別セットはお一人様1セット限り",
-   off:"8,634", cpText:"8,634円OFFクーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=OUIyRi1CVVdFLUUyRVgtUUFTUw--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-fs145/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-fs145/"},
+   img:"brush.webp", banner:null, note:"",
+   off:"", cpText:"クーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=OUIyRi1CVVdFLUUyRVgtUUFTUw--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-fs145/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-fs145/"},
   {id:"item3", cat:"ドライヤー", name:"SHOWER DRYER", kana:"シャワードライヤー", tab:"SHOWER<br>DRYER",
-   img:"dryer.webp", banner:"coupon-dryer.jpg", note:"※特別セットはお一人様1セット限り",
-   off:"7,718", cpText:"7,718円OFFクーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=SkFCTC01QklDLVhNVlYtRVZPQQ--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-sd173/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-sd173/"},
+   img:"dryer.webp", banner:null, note:"",
+   off:"", cpText:"クーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=SkFCTC01QklDLVhNVlYtRVZPQQ--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-sd173/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-sd173/"},
   {id:"item4", cat:"ストレートアイロン", name:"3D SILK STRAIGHT IRON", long:true, kana:"3D シルクストレートアイロン", tab:"3D SILK<br>IRON",
-   img:"iron.webp", banner:"coupon-iron.jpg", note:"※特別セットはお一人様1セット限り",
-   off:"3,819", cpText:"3,819円OFFクーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=OVUySC1FT05aLVNSUE8tWlJUUw--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-3d138/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-3d138/"}
+   img:"iron.webp", banner:null, note:"",
+   off:"", cpText:"クーポン獲得", coupon:"https://coupon.rakuten.co.jp/getCoupon?getkey=OVUySC1FT05aLVNSUE8tWlJUUw--&rt=&rd=https://item.rakuten.co.jp/brighte-onlineshop/brt-3d138/", url:"https://item.rakuten.co.jp/brighte-onlineshop/brt-3d138/"}
 ];
 /* ▲ 編集箇所 ─────────────────────────── */
 
@@ -371,10 +374,7 @@ function bannerHtml(it) {
   if (it.banner) {
     return `<a class="banner" href="${it.url}"><img src="images/${it.banner}" alt="${it.name} クーポン" width="720" height="480" loading="lazy"></a>`;
   }
-  return `<a class="banner is-wait" href="${it.url}">
-      <img src="images/${it.img}" alt="" width="1000" height="1000" loading="lazy">
-      <p><small class="cp-k">COUPON</small><strong>${it.off}<em>円OFF</em></strong>クーポン配布中</p>
-    </a>`;
+  return `<a class="banner is-photo" href="${it.url}"><img src="images/${it.img}" alt="${it.name} ${it.kana}" width="1000" height="1000" loading="lazy"></a>`;
 }
 
 function renderDeals() {
