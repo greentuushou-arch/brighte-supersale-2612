@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Montserrat:wght@800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap">
 <style>
 /* 構成: Brighte BF特集(brighte-blackfriday-2026)を楽天スーパーSALE用に作り替え。
    色はクリスマスの夜空(ネイビー)×赤いリボン×金。看板は「Rakutenスーパー／SALE」の金ゴシック */
@@ -232,13 +232,25 @@ footer .law{font-size:14px}
   .rail-nav a{background:rgba(7,13,44,.88);border-color:rgba(255,215,120,.6)}
   .rail-period{color:#fff}
   .countdown{background:rgba(7,13,44,.55)}
-  .rail-sign{font-family:Montserrat,'Noto Sans JP',sans-serif;font-weight:900;font-size:clamp(32px,2.9vw,52px);line-height:1.05;letter-spacing:-.01em}
+  .rail-sign{font-family:Jost,'Noto Sans JP',sans-serif;font-weight:600;font-size:clamp(32px,2.9vw,52px);line-height:1.05;letter-spacing:0}
   .rail-sign .rs-1{font-size:.62em;letter-spacing:.02em}
-  .rail-sign .rs-1 i{font-style:normal;font-family:"Noto Sans JP",sans-serif;font-weight:900}
-  .rail-sign .rs-2{font-size:1.7em;letter-spacing:-.03em;color:var(--gold);background:var(--g-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .rail-sign .rs-1 i{font-style:normal;font-family:"Noto Sans JP",sans-serif;font-weight:700}
+  .rail-sign .rs-2{font-size:1.7em;letter-spacing:-.02em;color:var(--gold);background:var(--g-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .rail-nav a{background:#0f1d52}
   .rail-nav span small{font-size:14px}
 }
+
+/* 期間だけの短いFV と 一番下の4商品画像 */
+.fv.is-short{padding:clamp(18px,5vw,30px) var(--gut-r) clamp(30px,7vw,44px) var(--gut-l)}
+.lineup{padding:52px var(--gut-r);background:var(--void);border-top:1px solid rgba(232,178,46,.28)}
+.lineup .fv-grid{margin-top:0}
+@media (min-width:768px){.lineup{padding:60px 56px}}
+/* 雪の結晶: 上から舞い降りる */
+.snow{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none}
+.flake{position:absolute;top:-8%;width:var(--s);height:var(--s);animation:fall var(--d) linear infinite;animation-delay:var(--dl)}
+.flake svg{display:block;width:100%;height:100%;fill:none;stroke:#fff8e0;stroke-width:2.2;stroke-linecap:round;filter:drop-shadow(0 0 4px rgba(255,236,170,.95));animation:sway calc(var(--d) / 2) ease-in-out infinite alternate}
+@keyframes fall{0%{top:-8%;opacity:0}8%{opacity:1}88%{opacity:1}100%{top:104%;opacity:0}}
+@keyframes sway{from{transform:translateX(-14px) rotate(0deg)}to{transform:translateX(14px) rotate(120deg)}}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -252,10 +264,11 @@ footer .law{font-size:14px}
 
 <!-- ▼ 夜空の看板: Rakutenスーパー / SALE -->
 <div class="neon-top">
+  <div class="snow" data-snow="9" aria-hidden="true"></div>
   <svg class="neon-sign" viewBox="0 0 800 470" role="img" aria-label="Brighte Rakutenスーパー SALE">
     <defs>
-      <text id="t-top" font-family="Montserrat,sans-serif" font-weight="800" font-size="86" x="400" y="168" text-anchor="middle" textLength="610" lengthAdjust="spacingAndGlyphs">Rakuten<tspan font-family="'Noto Sans JP',sans-serif" font-weight="900" letter-spacing="-4">スーパー</tspan></text>
-      <text id="t-sale" font-family="Montserrat,sans-serif" font-weight="900" font-size="262" x="400" y="418" text-anchor="middle" letter-spacing="-6">SALE</text>
+      <text id="t-top" font-family="Jost,sans-serif" font-weight="600" font-size="92" x="400" y="166" text-anchor="middle" textLength="560" lengthAdjust="spacingAndGlyphs">Rakuten<tspan font-family="'Noto Sans JP',sans-serif" font-weight="700">スーパー</tspan></text>
+      <text id="t-sale" font-family="Jost,sans-serif" font-weight="600" font-size="270" x="400" y="420" text-anchor="middle" letter-spacing="-4">SALE</text>
       <linearGradient id="gd-a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6d6"/><stop offset=".55" stop-color="#ffd970"/><stop offset="1" stop-color="#e9a91c"/></linearGradient>
       <linearGradient id="gd-b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".42" stop-color="#ffd25a"/><stop offset=".75" stop-color="#eaa91e"/><stop offset="1" stop-color="#b8820c"/></linearGradient>
       <path id="p-star" d="M0-22C2-6 6-2 22 0 6 2 2 6 0 22-2 6-6 2-22 0-6-2-2-6 0-22z"/>
@@ -285,28 +298,22 @@ footer .law{font-size:14px}
   <div class="fx fx-back" id="fxBack" aria-hidden="true"></div>
   <img class="hero-img" src="images/products.webp" alt="ストレートアイロン、シャワードライヤー、エレキブラシプラス、エレキリフト" width="900" height="873">
   <div class="fx fx-front" id="fxFront" aria-hidden="true"></div>
+  <div class="snow" data-snow="12" aria-hidden="true"></div>
 </div>
 
-<!-- ▼ FV -->
-<header class="fv">
-  <svg class="swoosh" viewBox="0 0 840 520" aria-hidden="true">
-    <defs><linearGradient id="sw" x1="0" x2="1"><stop offset="0" stop-color="#e8b22e" stop-opacity="0"/><stop offset=".45" stop-color="#ffe58f"/><stop offset="1" stop-color="#e8b22e" stop-opacity="0"/></linearGradient></defs>
-    <g fill="none" stroke="url(#sw)">
-      <path d="M0 470C240 370 500 430 840 300" stroke-width="2.4"/>
-      <path d="M0 495C260 395 520 455 840 335" stroke-width="1" opacity=".6"/>
-      <path d="M0 515C280 420 540 475 840 365" stroke-width=".6" opacity=".4"/>
-    </g>
-  </svg>
+<!-- ▼ 期間 -->
+<header class="fv is-short">
   <div class="glitter" id="glitter" aria-hidden="true"></div>
-
   <p class="period"><span><b>12/4</b>(金) 20:00</span><i>〜</i><span><b>12/11</b>(金) 1:59</span></p>
-  <h1><span class="fv-num">4</span><span class="fv-h"><small>Brighte 人気の</small><span>アイテムに</span><em>クーポン</em></span></h1>
-  <p class="fv-lead">美顔器、ドライヤー、ストレートアイロン<br>気になっていたあのアイテムを<br>この機会に</p>
-  <div class="fv-grid" id="fvGrid"></div>
 </header>
 
 <!-- ▼ クーポンブロック(ITEMSから生成) -->
 <div id="deals"></div>
+
+<!-- ▼ 4商品の画像(各商品ページへ) -->
+<section class="lineup" aria-label="Brighteの4アイテム">
+  <div class="fv-grid" id="fvGrid"></div>
+</section>
 
 
 <section class="caution">
@@ -385,7 +392,7 @@ function renderDeals() {
     </section>`).join("");
 
   document.getElementById("fvGrid").innerHTML = ITEMS.map(it =>
-    `<a href="#${it.id}"><img src="images/${it.img}" alt="${it.name} ${it.kana}" width="1000" height="1000"></a>`).join("");
+    `<a href="${it.url}"><img src="images/${it.img}" alt="${it.name} ${it.kana}の商品ページへ" width="1000" height="1000" loading="lazy"></a>`).join("");
   document.getElementById("railNav").innerHTML = ITEMS.map((it, i) =>
     `<li><a href="#${it.id}" data-nav="${it.id}"><span><b>${it.name}</b><small>${it.cat}</small></span><em>${i + 1}</em></a></li>`).join("");
   document.getElementById("tabbar").innerHTML = ITEMS.map(it =>
@@ -495,10 +502,27 @@ function setupHeroGold() {
   front.insertAdjacentHTML("beforeend", dust(18));
 }
 
+/* 雪の結晶(六角の枝つき)を data-snow の数だけ降らせる。位置は固定の乱数 */
+function setupSnow() {
+  const arm = "M0 0V-17M0-11l-5-5M0-11l5-5M0-5l-3.5-3.5M0-5l3.5-3.5";
+  const flake = '<svg viewBox="-20 -20 40 40">' +
+    [0, 60, 120, 180, 240, 300].map(deg => `<path d="${arm}" transform="rotate(${deg})"/>`).join("") + '</svg>';
+  const rand = seeded(20261204);
+  document.querySelectorAll("[data-snow]").forEach(box => {
+    const n = Number(box.dataset.snow);
+    box.innerHTML = Array.from({length: n}, (_, i) => {
+      const x = ((i + rand()) / n * 100).toFixed(1);
+      const sz = Math.round(12 + rand() * 20), d = (7 + rand() * 6).toFixed(1), dl = (-rand() * 12).toFixed(1);
+      return `<i class="flake" style="left:${x}%;--s:${sz}px;--d:${d}s;--dl:${dl}s">${flake}</i>`;
+    }).join("");
+  });
+}
+
 renderDeals();
 applyCoupons();
 setupHeroFx();
 setupHeroGold();
+setupSnow();
 setupGlitter();
 setupNav();
 setupCountdown();
