@@ -276,6 +276,60 @@ footer .law{font-size:14px}
 .stars .gs svg{display:block;width:100%;height:100%;fill:#ffe39a;filter:drop-shadow(0 0 3px rgba(255,205,90,.9))}
 .stars .gd{border-radius:50%;background:#ffe7a6;box-shadow:0 0 5px 1px rgba(255,200,80,.8)}
 .sky .neon-top,.sky .hero,.sky .fv.is-short{position:relative;z-index:1}
+
+/* ═════ v7: ブラックフライデーと変える ═════ */
+/* 期間: 金の枠 → 赤いリボンの帯(両端に切り込み) */
+.sky .period{display:flex;width:fit-content;margin:0 auto;border:0;border-radius:0;padding:12px clamp(30px,8vw,48px) 13px;color:#fff;
+  background:linear-gradient(#e2253e,#b30e27 55%,#8e0a1f);
+  clip-path:polygon(0 0,100% 0,calc(100% - 16px) 50%,100% 100%,0 100%,16px 50%);
+  box-shadow:none}
+.sky .period b{color:#fff}
+.sky .period i{color:#ffe39a}
+.sky .fv.is-short::before{content:"";position:absolute;left:0;right:0;top:calc(50% - 2px);height:2px;background:linear-gradient(90deg,transparent,rgba(255,215,120,.55) 20%,rgba(255,215,120,.55) 80%,transparent);z-index:-1}
+
+/* クーポンエリア: 夜空の続き。見出しは赤いリボン */
+.cp-area{position:relative;padding:48px var(--gut-r) 56px var(--gut-l);background:radial-gradient(80% 30% at 50% 0,rgba(211,20,47,.22),transparent 70%),var(--void2);text-align:center}
+.cp-head{display:grid;gap:6px;margin:0;font-size:min(10vw,52px);font-weight:700;line-height:1.15;letter-spacing:.12em;color:#fff}
+.cp-head small{font-size:clamp(16px,4.4vw,20px);font-weight:500;letter-spacing:.1em;color:#ffe39a}
+.cp-head::after{content:"";justify-self:center;width:72px;height:3px;margin-top:10px;background:linear-gradient(90deg,#d3142f 0 50%,#e8b22e 50%)}
+.tickets{display:grid;gap:28px;margin-top:32px}
+
+/* 券: 写真 → 商品名 → ミシン目 → 金額とボタン */
+.tk{position:relative;display:grid;text-align:center;background:linear-gradient(#0e1a52,#0a1238);border:1px solid rgba(232,178,46,.65);border-radius:18px;overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.35)}
+.tk::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,#d3142f,#ff4a5c 50%,#d3142f)}
+.tk-ph{display:block;margin:22px auto 0;width:min(78%,360px);border-radius:10px;overflow:hidden}
+.tk-ph img{width:100%;aspect-ratio:1}
+.tk-body{padding:18px 18px 22px}
+.tk-cat{display:inline-block;margin:0;padding:3px 14px;border-radius:999px;background:#d3142f;color:#fff;font-size:15px;font-weight:500;letter-spacing:.1em;line-height:1.6}
+.tk-name{margin:10px 0 0;font:600 min(10vw,48px)/1.1 var(--num);letter-spacing:.02em;color:#fff}
+.tk-name .nw{white-space:nowrap}
+.tk-name.is-long{font-size:min(8.4vw,36px)}
+.tk-kana{margin:6px 0 0;font-size:15px;letter-spacing:.14em;color:var(--mute)}
+.tk-stub{position:relative;padding:26px 18px 24px;background:radial-gradient(90% 80% at 50% 0,rgba(232,178,46,.16),transparent 70%)}
+/* ミシン目と両側の切り込み */
+.tk-stub::before{content:"";position:absolute;left:18px;right:18px;top:0;border-top:2px dashed rgba(232,178,46,.55)}
+.tk-stub::after{content:"";position:absolute;left:-14px;right:-14px;top:-14px;height:28px;background:radial-gradient(circle at 0 50%,var(--void2) 13px,transparent 14px) left/28px 28px no-repeat,radial-gradient(circle at 100% 50%,var(--void2) 13px,transparent 14px) right/28px 28px no-repeat}
+.tk-lb{margin:0;line-height:1.3;font-size:22px;font-weight:700;letter-spacing:.2em;color:#ffe39a}
+.tk-off{margin:14px 0 4px;color:#fff;font-size:min(19vw,104px);line-height:1}
+.tk .btns{margin-top:20px}
+
+/* 割引表記(rakuten-sale-typography の共通部品) */
+.off{display:inline-flex;align-items:center;line-height:1;white-space:nowrap}
+.off>b{font-family:"Jost",sans-serif;font-weight:600;font-size:1em;line-height:.8;letter-spacing:-.02em;background:var(--g-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.off__u{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:.04em;margin-left:.05em;color:#ffe39a}
+.off__u i{font-style:normal;display:block;line-height:.9}
+.off__u .y{font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:.5em;line-height:1}
+.off__u .o{font-family:"Jost",sans-serif;font-weight:700;font-size:.4em;letter-spacing:.02em}
+
+@media (min-width:768px){
+  .cp-area{padding:60px 40px}
+  .tk{grid-template-columns:44% 1fr;text-align:left}
+  .tk-ph{margin:24px 0 0 24px;width:auto}
+  .tk-body{align-self:center;padding:24px 28px 18px 26px}
+  .tk-stub{grid-column:1/-1;text-align:center;padding:30px 32px 28px}
+  .tk-stub .btns{grid-template-columns:1.4fr 1fr}
+  .tk-name{font-size:40px}
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -328,8 +382,11 @@ footer .law{font-size:14px}
 </header>
 </div>
 
-<!-- ▼ クーポンブロック(ITEMSから生成) -->
-<div id="deals"></div>
+<!-- ▼ クーポン: 金額が主役の券(ITEMSから生成) -->
+<section class="cp-area" aria-labelledby="cpHead">
+  <h2 class="cp-head" id="cpHead"><small>スーパーSALE期間中に使える</small>クーポン</h2>
+  <div class="tickets" id="deals"></div>
+</section>
 
 <!-- ▼ 4商品の画像(各商品ページへ) -->
 <section class="lineup" aria-label="Brighteの4アイテム">
@@ -395,24 +452,33 @@ function bannerHtml(it) {
   return `<a class="banner is-photo" href="${it.url}"><img src="images/${it.img}" alt="${it.name} ${it.kana}" width="1000" height="1000" loading="lazy"></a>`;
 }
 
+function offHtml(off) {
+  return `<span class="off"><b>${off}</b><span class="off__u"><i class="y">円</i><i class="o">OFF</i></span></span>`;
+}
+
 function renderDeals() {
-  document.getElementById("deals").innerHTML = ITEMS.map((it, i) => `
-    <section class="deal" id="${it.id}">
-      <p class="deal-notice">${it.cat}</p>
-      <h2 class="deal-title${it.long ? " is-long" : ""}">${it.title || it.name}</h2>
-      <p class="deal-kana">${it.kana}</p>
-      ${bannerHtml(it)}
-      <div class="btns">
-        <a class="btn btn-coupon" data-coupon="${it.coupon}" href="${it.coupon}">${it.cpText}</a>
-        <a class="btn btn-line" href="${it.url}">商品ページを見る</a>
+  document.getElementById("deals").innerHTML = ITEMS.map(it => `
+    <article class="tk" id="${it.id}">
+      <a class="tk-ph" href="${it.url}"><img src="images/${it.img}" alt="${it.name} ${it.kana}" width="1000" height="1000" loading="lazy"></a>
+      <div class="tk-body">
+        <p class="tk-cat">${it.cat}</p>
+        <h3 class="tk-name${it.long ? " is-long" : ""}">${it.title || it.name}</h3>
+        <p class="tk-kana">${it.kana}</p>
       </div>
-      ${it.note ? `<p class="note">${it.note}</p>` : ""}
-    </section>`).join("");
+      <div class="tk-stub">
+        <p class="tk-lb">クーポン</p>
+        <p class="tk-off">${offHtml(it.off)}</p>
+        <div class="btns">
+          <a class="btn btn-coupon" data-coupon="${it.coupon}" href="${it.coupon}">${it.cpText}</a>
+          <a class="btn btn-line" href="${it.url}">商品ページを見る</a>
+        </div>
+      </div>
+    </article>`).join("");
 
   document.getElementById("fvGrid").innerHTML = ITEMS.map(it =>
     `<a href="${it.url}"><img src="images/${it.img}" alt="${it.name} ${it.kana}の商品ページへ" width="1000" height="1000" loading="lazy"></a>`).join("");
   document.getElementById("railNav").innerHTML = ITEMS.map((it, i) =>
-    `<li><a href="#${it.id}" data-nav="${it.id}"><span><b>${it.name}</b><small>${it.cat}</small></span><em>${i + 1}</em></a></li>`).join("");
+    `<li><a href="#${it.id}" data-nav="${it.id}"><span><b>${it.name}</b><small>${it.off}円OFFクーポン</small></span><em>${i + 1}</em></a></li>`).join("");
   document.getElementById("tabbar").innerHTML = ITEMS.map(it =>
     `<a href="#${it.id}" data-nav="${it.id}">${it.tab}</a>`).join("");
 }
